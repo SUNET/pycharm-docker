@@ -1,0 +1,41 @@
+#!/bin/bash
+code_directory="$(realpath ${1})"
+basedir="$(basename ${code_directory})"
+
+echo "Do you want to allow PyCharm to access the internet?"
+select yn in "Yes" "No"
+do
+
+    if [[ ! -z "${yn}" ]]; then
+
+        case "${yn}" in
+            Yes ) network_type="bridge"; break;;
+            No ) network_type="none"; break;
+        esac
+
+    else
+        echo "No valid option selected, exiting!"
+        exit 1
+
+    fi
+
+done
+
+
+if [[ -d "${code_directory}" ]]; then
+    echo "Opening: ${code_directory}"
+
+    docker run -it --rm -e DISPLAY=${DISPLAY} \
+        --network="${network_type}" \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v ~/.PyCharm:/home/developer/.PyCharm \
+        -v ~/.PyCharm.local:/home/developer/.local/share/JetBrains \
+        -v ~/.PyCharm.config:/home/developer/.config/JetBrains \
+        -v ~/.PyCharm.cache:/home/developer/.cache/JetBrains \
+        -v ~/.tabnine:/home/developer/.tabnine \
+        -v ~/.config/TabNine:/home/developer/.config/TabNine \
+        -v ~/.local/share/TabNine:/home/developer/.local/share/TabNine \
+        -v ~/.config/shodan:/home/developer/.config/shodan \
+        -v "${code_directory}":"/home/developer/${basedir}" pycharm:latest
+
+fi
