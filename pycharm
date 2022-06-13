@@ -36,6 +36,6 @@ if [[ -d "${code_directory}" ]]; then
         -v ~/.config/TabNine:/home/developer/.config/TabNine \
         -v ~/.local/share/TabNine:/home/developer/.local/share/TabNine \
         -v ~/.config/shodan:/home/developer/.config/shodan \
-        -v "${code_directory}":"/home/developer/${basedir}" pycharm:latest
+        -v "${code_directory}":"/home/developer/${basedir}" localhost/pycharm:latest
 
 fi
