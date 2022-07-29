@@ -19,6 +19,7 @@ RUN apt-get update \
         python3-cryptography \
         python3-more-itertools \
         python3-dnspython \
+        python3-yaml \
         python3-ipaddr \
         virtualenv \
         gcc \
