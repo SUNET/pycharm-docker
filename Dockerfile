@@ -18,6 +18,8 @@ RUN apt-get update \
         python3-openssl \
         python3-cryptography \
         python3-more-itertools \
+        python3-dnspython \
+        python3-ipaddr \
         virtualenv \
         gcc \
         git \
