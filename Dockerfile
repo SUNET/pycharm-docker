@@ -1,7 +1,7 @@
 FROM debian:latest
 
-ARG PYCHARM_VERSION=2022.1
-ARG PYCHARM_BUILD=2022.1.2
+ARG PYCHARM_VERSION=2022.2
+ARG PYCHARM_BUILD=2022.2
 ARG pycharm_source=https://download.jetbrains.com/python/pycharm-community-${PYCHARM_BUILD}.tar.gz
 ARG pycharm_local_dir=.PyCharmCE${PYCHARM_VERSION}
 
@@ -43,6 +43,8 @@ RUN curl -fsSL $pycharm_source -o /opt/pycharm/installer.tgz \
 
 USER developer
 ENV HOME /home/developer
+
+RUN mkdir -p /home/developer/.cache/dconf
 
 RUN mkdir /home/developer/.PyCharm \
   && ln -sf /home/developer/.PyCharm /home/developer/$pycharm_local_dir
