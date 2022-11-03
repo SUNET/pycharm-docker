@@ -1,7 +1,7 @@
 FROM debian:latest
 
-ARG PYCHARM_VERSION=2022.2
-ARG PYCHARM_BUILD=2022.2
+ARG PYCHARM_VERSION=2022.2.3
+ARG PYCHARM_BUILD=2022.2.3
 ARG pycharm_source=https://download.jetbrains.com/python/pycharm-community-${PYCHARM_BUILD}.tar.gz
 ARG pycharm_local_dir=.PyCharmCE${PYCHARM_VERSION}
 
@@ -43,6 +43,9 @@ RUN curl -fsSL $pycharm_source -o /opt/pycharm/installer.tgz \
   && echo "Please verify the hashsum over e.g. Tor: $(sha256sum /opt/pycharm/installer.tgz)" \
   && tar --strip-components=1 -xzf installer.tgz \
   && rm installer.tgz
+
+RUN echo "Fix for some type annotations, for example in the redis package" \
+  && echo "https://github.com/redis/redis-py/issues/2249#issuecomment-1172943002"
 
 USER developer
 ENV HOME /home/developer
