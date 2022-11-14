@@ -25,12 +25,23 @@ done
 if [[ -d "${code_directory}" ]]; then
     echo "Opening: ${code_directory}"
 
+    # Create folders if not exists
+    mkdir -p \
+	  ~/.config/JetBrains \
+	  ~/.PyCharm.local \
+	  ~/.PyCharm.config \
+	  ~/.PyCharm.cache \
+	  ~/.tabnine \
+	  ~/.config/TabNine \
+	  ~/.local/share/TabNine \
+	  ~/.config/shodan
+
     docker run -it --rm -e DISPLAY=${DISPLAY} \
         --network="${network_type}" \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v ~/.config/JetBrains:/home/developer/.config/JetBrains \
         -v ~/.PyCharm:/home/developer/.PyCharm \
         -v ~/.PyCharm.local:/home/developer/.local/share/JetBrains \
-        -v ~/.PyCharm.config:/home/developer/.config/JetBrains \
         -v ~/.PyCharm.cache:/home/developer/.cache/JetBrains \
         -v ~/.tabnine:/home/developer/.tabnine \
         -v ~/.config/TabNine:/home/developer/.config/TabNine \
