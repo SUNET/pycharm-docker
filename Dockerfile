@@ -1,7 +1,7 @@
 FROM debian:latest
 
-ARG PYCHARM_VERSION=2022.2
-ARG PYCHARM_BUILD=2022.2
+ARG PYCHARM_VERSION=2022.2.3
+ARG PYCHARM_BUILD=2022.2.3
 ARG pycharm_source=https://download.jetbrains.com/python/pycharm-community-${PYCHARM_BUILD}.tar.gz
 ARG pycharm_local_dir=.PyCharmCE${PYCHARM_VERSION}
 
@@ -34,6 +34,7 @@ RUN apt-get update \
         libgtk-3-0 \
         libxslt1-dev \
         libxxf86vm-dev \
+        python3-typing-extensions \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -ms /bin/bash developer
 

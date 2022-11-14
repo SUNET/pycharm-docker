@@ -14,3 +14,10 @@ Building the image
 
 ### Installation 
 Copy the script `pycharm` to somewhere in your `$PATH` such as `/usr/local/bin` and start by running `$ pycharm your_code_dir`
+
+### Replace pycharms typing with a updated version, needed for example with the 'redis' lib
+Add this to the Dockerfile
+
+RUN echo "Fix for some type annotations, for example in the redis package" \
+  && echo "https://github.com/redis/redis-py/issues/2249#issuecomment-1172943002" \
+  && cd /opt/pycharm/plugins/python-ce/helpers/ && rm -rf typeshed && git clone https://github.com/python/typeshed.git
