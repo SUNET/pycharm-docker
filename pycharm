@@ -31,9 +31,6 @@ if [[ -d "${code_directory}" ]]; then
 	  ~/.PyCharm.local \
 	  ~/.PyCharm.config \
 	  ~/.PyCharm.cache \
-	  ~/.tabnine \
-	  ~/.config/TabNine \
-	  ~/.local/share/TabNine \
 	  ~/.config/shodan
 
     docker run -it --rm -e DISPLAY=${DISPLAY} \
@@ -43,9 +40,6 @@ if [[ -d "${code_directory}" ]]; then
         -v ~/.PyCharm:/home/developer/.PyCharm \
         -v ~/.PyCharm.local:/home/developer/.local/share/JetBrains \
         -v ~/.PyCharm.cache:/home/developer/.cache/JetBrains \
-        -v ~/.tabnine:/home/developer/.tabnine \
-        -v ~/.config/TabNine:/home/developer/.config/TabNine \
-        -v ~/.local/share/TabNine:/home/developer/.local/share/TabNine \
         -v ~/.config/shodan:/home/developer/.config/shodan \
         -v "${code_directory}":"/home/developer/${basedir}" localhost/pycharm:latest
 
