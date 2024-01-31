@@ -1,7 +1,7 @@
 FROM debian:latest
 
-ARG PYCHARM_VERSION=2023.1
-ARG PYCHARM_BUILD=2023.1.2
+ARG PYCHARM_VERSION=2023.3
+ARG PYCHARM_BUILD=2023.3.3
 ARG pycharm_source=https://download.jetbrains.com/python/pycharm-community-${PYCHARM_BUILD}.tar.gz
 ARG pycharm_local_dir=.PyCharmCE${PYCHARM_VERSION}
 
@@ -21,7 +21,6 @@ RUN apt-get update \
         python3-dnspython \
         python3-tldextract \
         python3-yaml \
-        python3-ipaddr \
         python3-lxml \
         gcc \
         git \
@@ -34,6 +33,7 @@ RUN apt-get update \
         libxslt1-dev \
         libxxf86vm-dev \
         python3-typing-extensions \
+        nodejs \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -ms /bin/bash developer
 
